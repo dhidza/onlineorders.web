@@ -1,0 +1,80 @@
+<div class="card-container">
+  <div class="card u-clearfix">
+    <div class="card-body">  
+      <h2 class="card-title">Register For Online Orders</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+      <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" formControlName="emailAddress" #emailAddress/>    
+            <mat-hint></mat-hint>
+            <mat-error *ngIf="registrationForm.get('emailAddress').hasError('required')">Email is required</mat-error> 
+            <mat-error *ngIf="registrationForm.get('emailAddress').hasError('email')">Enter valid email</mat-error>       
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Mobile Phone</mat-label>
+            <input matInput placeholder="0871234567" formControlName="phone">    
+            <mat-hint>Used to verify your account via sms</mat-hint>
+            <mat-error *ngIf="registrationForm.get('phone').hasError('required')">Phone is required</mat-error> 
+          </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <mat-label>County</mat-label>
+          <mat-select formControlName="countyId" required >
+            <mat-option>-Please Select-</mat-option>
+            <mat-option *ngFor="let county of counties" [value]="county.id">
+              {{county.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="registrationForm.get('countyId').hasError('required')">Select a County</mat-error> 
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Home Address</mat-label>
+          <input matInput placeholder="12 The brooks, Galway" formControlName="address" #address>    
+          <mat-hint>your  home address</mat-hint>
+          <mat-error *ngIf="registrationForm.get('address').hasError('required')">Address is required</mat-error> 
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="legacy">
+          <mat-label>Home Eircode</mat-label>
+          <input matInput placeholder="a12bc34" formControlName="eirCode" #eirCode>    
+          <mat-hint>Your home eircode</mat-hint>
+          <mat-error *ngIf="registrationForm.get('eirCode').hasError('required')">Eircode is required</mat-error> 
+        </mat-form-field>
+    </p>
+    <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Password</mat-label>
+            <input matInput  type="password" formControlName="password" #password>    
+            <mat-hint>Your login password</mat-hint>
+            <mat-error *ngIf="registrationForm.get('password').hasError('required')">Enter your password</mat-error> 
+          </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field appearance="legacy">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput  type="password" formControlName="confirmPassword" #confirmPassword>    
+            <mat-hint>Confirm your login password</mat-hint>
+            <mat-error *ngIf="registrationForm.get('confirmPassword').hasError('required')">Confirm your password</mat-error> 
+          </mat-form-field>
+      </p>   
+      <button mat-raised-button color="accent" class="primary" type="submit">Register</button>
+      </form>
+      <div class="u-clearfix"></div>
+      <br />
+      <span>Have an account?  &nbsp;<a routerLink="/login" class="home_link">Go To Account Login</a></span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+ 

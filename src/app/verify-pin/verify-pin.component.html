@@ -1,0 +1,33 @@
+<div class="card-container">
+    <div class="card u-clearfix">
+      <div class="card-body">  
+        <h2>Registration Success</h2>
+        <form [formGroup]="verifyPinForm" (ngSubmit)="onSubmit()" >
+            <p class="registration-success">
+                Welcome to the online ordering platform.
+                <br /><br />
+                Please enter the code you received on {{registrationResponse.phone}} below to securely verify your account.
+            </p>
+            <br />
+            <p>
+                <mat-form-field appearance="legacy">
+                <mat-label>Vefication Code</mat-label>
+                <input matInput type="text" formControlName="code" #code/>    
+                <mat-hint></mat-hint>
+                <mat-error *ngIf="verifyPinForm.get('code').hasError('required')">Verification code is required</mat-error> 
+                <mat-error *ngIf="verifyPinForm.get('code').hasError('pinError')">Enter valid code</mat-error>       
+                </mat-form-field>
+            </p>
+            <div *ngIf="verifyFailed" class="error">
+                {{errorMessage}}
+            </div>
+            <button mat-raised-button color="accent" class="primary" type="submit">Verify Pin</button>
+        </form>
+        <div class="u-clearfix"></div>
+      </div>
+    </div>
+</div>
+
+
+
+

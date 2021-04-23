@@ -1,0 +1,38 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppConfig } from '../config/app-config';
+import { ICategoryModel } from '../interfaces/icategory-model';
+import { Observable } from 'rxjs';
+import { CrudResponse } from '../models/crud-response';
+import { ICompanyProductModel } from '../interfaces/icompany-product-model';
+import { ICountyModel } from '../interfaces/icounty-model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ListingService {
+
+  constructor(private _http: HttpClient, private config: AppConfig) { }
+
+  getCategories() :  Observable<CrudResponse<ICategoryModel[]>>{   
+    return this._http.get<CrudResponse<ICategoryModel[]>>(this.config.dataEndpoint + "/listings/categories/" + this.config.companyId, 
+              {headers: this.setHeaders()});
+  }
+
+  getCounties() :  Observable<CrudResponse<ICountyModel[]>>{   
+    return this._http.get<CrudResponse<ICountyModel[]>>(this.config.dataEndpoint + "/listings/counties/", 
+              {headers: this.setHeaders()});
+  }
+
+  getProducts(productId : number):  Observable<CrudResponse<ICompanyProductModel[]>>{  
+    return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/products/" + 
+              this.config.companyId + "/" + productId, 
+       {headers: this.setHeaders()});
+  }
+
+  private setHeaders() : HttpHeaders{
+    const headers = new HttpHeaders()
+      .set('AppName', this.config.appName);
+   return headers;
+  }
+}

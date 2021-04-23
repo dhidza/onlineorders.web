@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Cart update successful</h1>
+<div mat-dialog-content>
+  <p>You have successfully added {{data.orderProduct.companyProduct.product.name}} to your shopping cart.
+      
+    <br />  <br />
+    {{data.orderProduct.displayTotal}} of {{data.orderProduct.companyProduct.product.name}} at ({{data.orderProduct.quantity}} X {{data.orderProduct.companyProduct.product.displayPrice}} ) 
+    has been added to your shopping cart.
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" class="primary" [mat-dialog-close]="data.order.id" cdkFocusInitial>Keep Shopping</button>
+  <button mat-raised-button color="accent" (click)="checkOut()">Checkout</button>
+</div>

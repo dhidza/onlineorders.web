@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/eff4f768-424d-4456-aac6-e99d4d92f489/resourceGroups/onlineOrders/providers/Microsoft.Web/sites/onlineorderstest",
+    "appService.deploySubpath": "dist\\OnlineOrders"
+}

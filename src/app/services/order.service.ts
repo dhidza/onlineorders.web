@@ -1,0 +1,40 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppConfig } from '../config/app-config';
+import { Observable } from 'rxjs';
+import { CrudResponse } from '../models/crud-response';
+import { IOrder } from '../interfaces/iorder';
+import { ICompleteOrderResponse } from '../interfaces/icomplete-order-response';
+import { IDeliveryDetails } from '../interfaces/idelivery-details';
+import { IStripeChargeResponse } from '../interfaces/istripe-charge-response';
+import { IStripeChargeRequest } from '../interfaces/istripe-charge-request';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class OrderService {
+
+  constructor(private _http: HttpClient, private config: AppConfig) { }
+
+  updateDeliveryAddress(orderCode: string, deliveryDetails: IDeliveryDetails): Observable<CrudResponse<IOrder>> {
+    deliveryDetails.orderCode = orderCode;
+    return this._http.put<CrudResponse<IOrder>>(this.config.dataEndpoint + "/order" 
+               , deliveryDetails, {headers: this.setHeaders()});
+  }
+
+  customerCompleteOrder(orderCode: string): Observable<CrudResponse<ICompleteOrderResponse>> {
+    return this._http.patch<CrudResponse<ICompleteOrderResponse>>(this.config.dataEndpoint + "/order/" 
+              + orderCode , {headers: this.setHeaders()});
+  }
+
+  chargeOrder(model: IStripeChargeRequest): Observable<CrudResponse<IStripeChargeResponse>> {
+    return this._http.post<CrudResponse<IStripeChargeResponse>>(this.config.dataEndpoint + "/payment/charge" , model, {headers: this.setHeaders()});
+  }
+
+  private setHeaders() : HttpHeaders{
+    const headers = new HttpHeaders()
+      .set('AppName', this.config.appName);
+     
+   return headers;
+  }
+}

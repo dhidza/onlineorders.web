@@ -1,0 +1,36 @@
+<div class="body-content">
+  <span class="floating-content">
+    <span class="page-title">Select a product</span>
+  </span>
+  <div class="card-nav" style="padding: 16px 0 0 20px">
+    <button mat-raised-button class="shorter" color="warn" (click)="backToList()" style="float: right;">Back to products</button>
+   <div class="u-clearfix"></div> 
+  </div>
+
+  <div class="card-container">     
+      
+      <div class="card u-clearfix" *ngIf="!loading">       
+        <div class="card-media-full">
+          <img src="{{model.companyProduct.product.primaryImageUrl}}"  alt="{{model.companyProduct.product.name}}"/>
+        </div>
+        <div class="card-media">
+          <img src="{{model.companyProduct.product.primaryImageUrl}}" width="110px" alt="{{model.companyProduct.product.name}}"/>
+        </div> 
+        <div class="card-body"> 
+          <h3 class="card-title">{{model.companyProduct.product.name}}</h3>
+          <span class="card-author subtle">Batch: {{model.companyProduct.batchNumber}}</span>
+          <span class="card-author price subtle bigger">{{model.companyProduct.product.displayPrice}}</span>
+          <span class="card-description subtle">{{model.companyProduct.product.description}}</span>
+        </div>
+        <div class="cart-shopper u-clearfix">
+        <div class="cart-quantity">Quantity</div>   
+        <button class="action-btn minus" (click)="reduceQuantity()">-</button><div class="action-lbl">{{model.quantity}}</div>
+        <button class="action-btn plus" (click)="addQuantity()">+</button>
+        <div class="cart-quantity cart-total">Total: {{model.displayTotal}}</div>
+        <div class="u-clearfix"></div>
+        <button mat-raised-button color="accent" (click)="addToCart()">ADD TO / UPDATE CART</button>
+        </div> 
+      </div> 
+    </div>
+  </div>
+  

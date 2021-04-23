@@ -1,0 +1,36 @@
+<div class="card-container" *ngIf="!loading">      
+    <div class="card u-clearfix">
+      <h2 class="card-title">Secure Checkout</h2>  
+      <br />    
+      <p>
+        Thank you for your order.  A total of <span class="order-total">{{orderTotals.orderTotal}}</span> will now be charged against your card too complete your order. 
+        <br /><br />
+        Please proceed to pay for your order using the button below.
+      </p>
+      <div class="u-clearfix"></div>
+      <br />     
+      <div class="u-clearfix"></div>
+
+      <form novalidate [formGroup]="stripeForm" (ngSubmit)="completePayment()" >
+        <p>
+            <mat-form-field appearance="legacy">
+              <mat-label>Card Name</mat-label>
+              <input matInput type="text" placeholder="Firstname Lastname" formControlName="name" #name/>    
+              <mat-hint>Your Full name</mat-hint>
+              <mat-error *ngIf="stripeForm.get('name').hasError('required')">Name is required</mat-error> 
+            </mat-form-field>
+        </p>  
+        <br />
+        <ngx-stripe-card id="card-element" class="field">
+          [options]="cardOptions"
+          [elementOptions]="elementOptions"
+        </ngx-stripe-card>  
+        <br />
+        <button mat-raised-button color="accent" type="submit">Pay for Order</button>
+    </form>
+    <div class="u-clearfix"></div>
+    <br />   
+    <span *ngIf="paymentFailed" class="error-message">{{paymentError}} </span>
+    </div> 
+  </div>
+  

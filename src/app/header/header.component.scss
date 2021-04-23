@@ -1,0 +1,43 @@
+// @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+// $primary : #ff4081;;
+// *{
+//     padding: 0;
+//     margin: 0;
+//     text-decoration: none;
+//     list-style: none;
+//     box-sizing: border-box;
+// }
+// nav {
+//     background-color:$primary;
+//     height: 80px;
+//     width: 100%;
+    
+//     ul{
+//       float: right;  
+//       margin-right:20px;
+//       li{
+//           display: inline;
+//           line-height:80px;
+//           margin: 0 5px;
+//           a{
+//               color: white;
+//               text-transform: uppercase;
+//               font-size: 16px;
+//               padding: 7px 13px;
+//               border-radius: 4px;
+//           }
+//           a:hover, a.active{
+//               background: darken($primary, 10%);              
+//               transition: .5s;
+//           }
+//       }
+//     }
+
+//     label.logo{
+//       color: white;
+//       font-size: 35px;
+//       line-height: 80px;
+//       padding: 0 100px;
+//       font-weight: bold;
+//     }
+// }

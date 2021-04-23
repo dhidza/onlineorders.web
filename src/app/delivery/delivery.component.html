@@ -1,0 +1,62 @@
+<div class="body-content">
+    <span class="floating-content">
+      <span class="page-title">Delivery Details</span>
+    </span>
+    <div class="card-nav" style="padding: 16px 0 0 20px">
+      <button mat-raised-button class="shorter" color="warn" (click)="backToCart()" style="float: right;">Back to cart</button>
+     <div class="u-clearfix"></div> 
+    </div>
+   
+    <div class="card-container" *ngIf="loaded">   
+        <div class="card">
+            <div class="card-title">Delivery Details</div>
+            <div class="u-clearfix"></div>
+            <br />  
+            <div class="invalid-message" *ngIf="!deliveryDetails.isValidDeliveryDetails">
+                To complete your order, please revise and keep or change your delivery delivery address and eircode listed below
+            </div> 
+            <br />
+            <button mat-stroked-button color="accent" (click)="enterAddress()" >Change Delivery Address</button>      
+            <div class="u-clearfix"></div>
+            <br />
+            <p class="address-content subtle" *ngIf="deliveryDetails.isValidDeliveryDetails">
+                Address:  {{deliveryDetails.deliveryAddress}}       
+                <br />
+                County:  {{deliveryDetails.deliveryCounty}}       
+                <br />
+                EirCode:  {{deliveryDetails.eirCode}}
+                <br />
+                Phone: {{deliveryDetails.deliveryPhone}}
+            </p>
+            <br />
+            <div class="card-title">Order Totals</div>
+            <br />
+            <div class="card-nav card-container no-border">   
+                <div class="media">
+                    <img src="assets/images/basket.png" width="80px" class="basket" alt=""/>
+                </div>
+                <div class="totals">
+                    <table>
+                        <tr class="card-author block subtle">
+                            <td width="145">Subtotal ({{orderTotals.totalQuantity}} items):</td><td> {{orderTotals.productTotal}}</td>
+                        </tr>
+                        <tr class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails">
+                            <td width="145"> Service Fee</td><td>{{orderTotals?.serviceFee}}</td>
+                        </tr>
+                        <tr class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails">
+                            <td width="145"> Delivery Fee</td><td>{{orderTotals.deliveryFee}}</td>
+                        </tr>
+                        <tr class="card-author block subtle" style="color:#50c27c">
+                            <td width="145"> Order Total</td><td>{{orderTotals.orderTotal}}</td>
+                        </tr>
+                    </table>        
+                </div> 
+                <div class="u-clearfix"></div>
+            </div>
+            <div class="u-clearfix"></div>
+            <div class="card-nav card-container no-border" *ngIf="model.returnValue.isValidDeliveryDetails">
+                <button mat-raised-button color="accent" class="fullwidth" (click)="checkOut()">Pay For Order</button>
+            </div>
+        </div>
+    </div>
+</div>
