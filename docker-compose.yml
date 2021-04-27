@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    ordersonline:
+        image: ${DOCKER_REGISTRY-}ordersonline-webapp
+        environment:
+            - ENVIRONMENT=${ENVIROMENT:-production}
+        build:
+            context: .
+            dockerfile: Dockerfile
