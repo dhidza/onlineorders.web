@@ -47,13 +47,24 @@ RUN ng build --output-path=dist --prod --aot --configuration ${ENVIROMENT}
 
 # base image
 FROM nginx:1.16.0-alpine
+RUN apk update \
+ && apk add jq \
+ && rm -rf /var/cache/apk/*
+
+RUN apk update && apk add bash
 
 COPY nginx/default.conf /etc/nginx/conf.d/
 
 # copy artifact build from the 'build environment'
 COPY --from=build /src/dist /usr/share/nginx/html
+COPY /scripts/*.sh /usr/share/nginx/html
+RUN  chmod +x /usr/share/nginx/html/*.sh
+RUN  dos2unix /usr/share/nginx/html/*.sh
 
 # expose port 80
 
+WORKDIR /usr/share/nginx/html
+
 # run nginx
+ENTRYPOINT [ "./startup.sh" ]
 CMD ["nginx", "-g", "daemon off;"]
