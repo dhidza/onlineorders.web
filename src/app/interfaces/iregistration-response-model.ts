@@ -4,4 +4,5 @@ export interface IRegistrationResponseModel {
     phone: string;
     smsSent: boolean;
     userId: string;
+    success: boolean;
 }

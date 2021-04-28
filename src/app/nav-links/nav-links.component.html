@@ -1,0 +1,14 @@
+<div fxFlex fxLayout fxLayoutAlign="end" class="nav-links">
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li *ngIf="!authService.isLoggedIn()" ><a  routerLink="login">Login</a></li>
+        <li *ngIf="authService.isLoggedIn()" ><a (click)="logout()">Logout</a></li>
+        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/about">Contact</a></li>
+    </ul>
+</div>
+<div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs style="float: left;">
+    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <li style="padding-top:5px;"><a style="padding:0px" (click)="showCart()"><img width="36" class="basket-icon" src="assets/images/icons/shopping-basket.png">
+            <span class="basket-counter">{{basketCount}}</span></a></li>
+    </ul>
+</div>

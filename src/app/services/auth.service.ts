@@ -10,13 +10,19 @@ import { ILoginModel } from '../interfaces/ilogin-model';
 import { ILoginResponse } from '../interfaces/ilogin-response';
 import * as jwt_decode from "jwt-decode";
 import { IUserProfile } from '../interfaces/iuser-profile';
+import { IRequestReset } from '../interfaces/irequest-reset';
+import { IRequestResetResponse } from '../interfaces/irequest-reset-response';
+import { IResetRequest } from '../interfaces/ireset-request';
+import { IResetResponse } from '../interfaces/ireset-response';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
   headers : HttpHeaders = new HttpHeaders();
+  
   constructor(private _http: HttpClient, private config: AppConfig ) {
     this.setHeaders();
    }
@@ -62,13 +68,16 @@ export class AuthService {
 
   }
 
-  requestReset(){
-
+  requestReset(model: IRequestReset): Observable<IRequestResetResponse> {
+    return this._http.post<IRequestResetResponse>(this.config.authEndpoint + "/account/requestreset", model, 
+    {headers: this.setHeaders()});
   }
 
-  resetPassword(){
-
+  resetPassword(model: IResetRequest): Observable<IResetResponse> {
+    return this._http.post<IResetResponse>(this.config.authEndpoint + "/account/reset", model, 
+    {headers: this.setHeaders()});
   }
+
   isLoggedIn(){
     const token =  localStorage.getItem("token");  
     if(token){

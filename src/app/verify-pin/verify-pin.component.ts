@@ -4,6 +4,7 @@ import { IRegistrationResponseModel } from '../interfaces/iregistration-response
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { RedirectModel } from '../models/redirect-model';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-verify-pin',
@@ -15,14 +16,12 @@ export class VerifyPinComponent implements OnInit {
   verifyPinForm : FormGroup; 
   verifyFailed: boolean = false;
   errorMessage: string = '';
-  constructor(private authService: AuthService,  private router: Router) { }
+  constructor(private authService: AuthService,  private router: Router, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
      let strAuthResponse : string =  localStorage.getItem("pinVerify");
      if(strAuthResponse)
         this.registrationResponse = JSON.parse(strAuthResponse); 
-    
-      //get this model from the service
 
       this.verifyPinForm = new FormGroup({
         code : new FormControl('',[Validators.required]),
@@ -33,8 +32,10 @@ export class VerifyPinComponent implements OnInit {
   onSubmit(){
     if(this.verifyPinForm.valid)
     {
+        this.spinner.show();
         this.authService.verifyAccount(this.verifyPinForm.value)
           .subscribe(res =>{
+            this.spinner.hide();
             console.log(res); 
             if(res.success){
               let strRedirectModel : string = sessionStorage.getItem("redirectModel");
@@ -58,6 +59,7 @@ export class VerifyPinComponent implements OnInit {
             console.log(response);
             this.verifyFailed = true;
             this.errorMessage = response.error.message;
+            this.spinner.hide();
           });
     }
   }

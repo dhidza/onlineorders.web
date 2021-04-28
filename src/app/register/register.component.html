@@ -1,8 +1,12 @@
 <div class="card-container">
   <div class="card u-clearfix">
     <div class="card-body">  
-      <h2 class="card-title">Register For Online Orders</h2>
-      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >
+      <h2 class="card-title">Create new account</h2>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" >      
+      <div class="form-error" *ngIf="serverError">
+        {{serverErrorMessage}} 
+      </div>
+      <br />
       <p>
           <mat-form-field appearance="legacy">
             <mat-label>Email Address</mat-label>
@@ -54,6 +58,7 @@
             <input matInput  type="password" formControlName="password" #password>    
             <mat-hint>Your login password</mat-hint>
             <mat-error *ngIf="registrationForm.get('password').hasError('required')">Enter your password</mat-error> 
+            <mat-error *ngIf="f.password.errors?.minlength">Password must be at leat 6 characters</mat-error> 
           </mat-form-field>
       </p>
       <p>
@@ -62,6 +67,7 @@
             <input matInput  type="password" formControlName="confirmPassword" #confirmPassword>    
             <mat-hint>Confirm your login password</mat-hint>
             <mat-error *ngIf="registrationForm.get('confirmPassword').hasError('required')">Confirm your password</mat-error> 
+            <mat-error *ngIf="f.confirmPassword.errors?.mustMatch">Passwords must match</mat-error> 
           </mat-form-field>
       </p>   
       <button mat-raised-button color="accent" class="primary" type="submit">Register</button>

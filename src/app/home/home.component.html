@@ -1,9 +1,14 @@
-<mat-carousel timings="200ms ease-in" [autoplay]="true" interval="6000" color="white" 
-  [loop]="true" [hideArrows]="true"  [hideIndicators]="false"
-  [useKeyboard]="true" >
-    <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index"
-        [image]="slide.image"
-        overlayColor="#ffffff"
-        [hideOverlay]="false">
-    </mat-carousel-slide>
-</mat-carousel>
+<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+<div ngxSlickItem *ngFor="let slide of slides" class="slide">
+    <img src="{{slide.image}}" alt="" width="100%">
+    <div class="carousel-actions">
+      <p class="slide-description">
+        {{slide.description}}
+      </p>
+      <br />
+      <a routerLink="{{slide.redirectUrl}}" class="banner-action">Start Shopping</a>
+    </div>
+</div>
+</ngx-slick-carousel>
+<app-top-sellers></app-top-sellers>
+<app-testimonials></app-testimonials>

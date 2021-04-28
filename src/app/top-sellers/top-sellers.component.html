@@ -1,0 +1,30 @@
+<div class="topsellers-holder">
+    <div class="topsellers-title">
+        <div id="t-title">
+            <img src="assets/images/icons/best_seller_3.png" width="38" alt="" style="margin-top:-3px" class="testimonials-icon">
+            <div class="text-content">Top Sellers</div>
+        </div>
+    </div>
+    <div class="card-container" *ngFor="let companyProduct of model" (click)="selectProduct(companyProduct.id)">
+        <div class="card u-clearfix">
+          <div class="card-body">  
+            <h2 class="card-title">{{companyProduct.product.name}}</h2>
+            <span class="card-author subtle">Batch: {{companyProduct.batchNumber}}</span>
+            <span class="card-author price subtle">Price: {{companyProduct.product.displayPrice}}</span>
+            <span class="card-description subtle">{{companyProduct.product.description}}</span>
+            <div class="card-read">         
+              <button class="card-button" (click)="selectProduct(companyProduct.id)">BUY {{companyProduct.product.name}} </button>
+            </div>  
+          </div>
+        </div> 
+        <div class="card-media-full">
+          <img src="{{companyProduct.product.primaryImageUrl}}"  alt="{{companyProduct.product.name}}"/>
+        </div>
+        <div class="card-media">
+          <img src="{{companyProduct.product.primaryImageUrl}}" width="125px" alt="{{companyProduct.product.name}}"/>
+        </div>  
+        <div class="u-clearfix"></div>
+    </div>
+    <div class="u-clearfix"></div>
+</div>
+<div class="u-clearfix"></div>

@@ -3,4 +3,5 @@ export interface ICategoryModel {
     name: string;
     description: string;
     imageUrl: string;
+    bannerImageUrl: string;
 }
