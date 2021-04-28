@@ -2,6 +2,8 @@
 
 set -e
 
+echo "Replacing config with environment variables"
+
 if [[ -z "${STRIPE_CLIENT_ACCESS_KEY_PRIVATE}" ]]; then
   echo "STRIPE_CLIENT_ACCESS_KEY_PRIVATE Environment variable is not found"
 else
