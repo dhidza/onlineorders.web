@@ -1,0 +1,48 @@
+.about-holder{    
+    .inner-holder{
+        padding:20px;
+    }
+    font-family: Roboto;
+    width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #fff;
+}
+
+.about-title{        
+    margin-bottom: 20px;
+    .t-title{
+        background-color:#2c292f;
+        font-size: 22px;
+        width: 220px;
+        height:42px;
+        padding: 10px;
+        img{
+            float:left;
+        }
+        .text-content{
+            float:left;
+            padding: 10px 0 0 16px;
+            color: #fff;
+        }
+    }
+}  
+.form-success{
+    color: rgb(4, 119, 4); 
+}
+
+.mat-form-field{
+    width:100%
+}
+
+@media (max-width: 480px) {
+    .about-holder{  
+      width: 360px;
+    }  
+  }
+  @media only screen and (min-device-width:481px){
+    .about-holder{  
+      width: 100%;
+      max-width: 1200px;
+    }  
+  }

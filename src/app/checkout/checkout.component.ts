@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 import { IOrderTotals } from '../interfaces/iorder-totals';
 import { IOrder } from '../interfaces/iorder';
@@ -9,6 +8,9 @@ import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IStripeChargeRequest } from '../interfaces/istripe-charge-request';
+import { PaymentIntentStateEnum } from '../interfaces/istripe-charge-response';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SharedCartUpdateService } from '../services/shared-cart-update.service';
 
 
 @Component({
@@ -39,13 +41,15 @@ export class CheckoutComponent implements OnInit {
 
   stripeForm: FormGroup;
   orderTotals: IOrderTotals;
+
   loading: boolean = true;
   paymentError: string;
   paymentFailed: boolean = false;
   orderCode: string = '';
   constructor( private activatedRoute: ActivatedRoute, 
-        private router: Router,  private cartService: ShoppingCartService, 
-        private orderService: OrderService, private fb:FormBuilder,private stripeService: StripeService ) { }
+        private router: Router,  private cartService: ShoppingCartService, private spinner: NgxSpinnerService,
+        private orderService: OrderService, private sharedCartService: SharedCartUpdateService, 
+        private fb:FormBuilder,private stripeService: StripeService ) { }
 
   ngOnInit(): void { 
     this.stripeForm = this.fb.group({
@@ -67,50 +71,76 @@ export class CheckoutComponent implements OnInit {
   }
 
   completePayment(){
+    this.spinner.show();
     this.paymentFailed = false;
     const name = this.stripeForm.get('name').value;
-    this.stripeService
-      .createToken(this.card.element, { name })
-      .subscribe((result) => {
-        if (result.token) {        
-          console.log(result.token.id);
-          const chargeModel: IStripeChargeRequest = {
-            orderCode : this.orderCode,
-            source: result.token.id
-          };
-
-          this.orderService.chargeOrder(chargeModel)
-          .subscribe(res => {
-            console.log(res);       
-            if(res.success){
+    if(!this.stripeForm.valid)
+    {
+      this.paymentFailed = true;
+      this.paymentError = "Failed to confirm payment, please try again";
+      return;
+    }
+    this.orderService.initiateOrder(this.orderCode)
+    .subscribe(res => {    
+      if(res.success){
+        this.stripeService
+        .confirmCardPayment(res.returnValue.paymentReference, {
+          payment_method: {
+            card: this.card.element
+          }
+        })
+        .subscribe((result) => {
+          console.log(result);
+           if(result.error){
+            console.log(result.error);
+            this.paymentFailed = true;
+            this.paymentError = result.error.message   
+            this.spinner.hide();
+            return;
+           }
+           else{
+            this.orderService.chargeOrder({
+              orderCode : this.orderCode,
+              source: result.paymentIntent.id
+            })
+            .subscribe(res => { 
               const redirectModel = {
                 message : 'Thank you for your order.  A confirmation email has been sent to you.',
                 buttonText : 'Home',
-                redirectUri : '/categories' 
-              }
-              sessionStorage.setItem('redirectModel', JSON.stringify(redirectModel));
-              localStorage.removeItem('orderId');
-              localStorage.removeItem('orderCode');
-              this.router.navigateByUrl('/success');
-            }
-            else{
-              this.paymentFailed = true;
-              this.paymentError = "Failed to charge your card, please try again"
-            }
-          },
-          (error) => {
-            console.log(error);
-            this.paymentFailed = true;
-            this.paymentError = "Payment failed, please try again."
-          }); 
-
-        } else if (result.error) {
-          // Error creating the token
+                redirectUri : '/home' 
+               }
+               sessionStorage.setItem('redirectModel', JSON.stringify(redirectModel));
+               localStorage.removeItem('orderId');
+               localStorage.removeItem('orderCode');
+               this.sharedCartService.updateBasketCount(0);
+               this.spinner.hide();
+               this.router.navigateByUrl('/success');
+            }, (error) =>{
+                //this should never ever happen
+                console.log(error);
+                this.spinner.hide();
+            });  
+           }
+        },
+        (error) => {
+          console.log(error);
           this.paymentFailed = true;
-          this.paymentError = "Payment failed, please try again."
-          console.log(result.error.message);
-        }
-      });
+          this.paymentError = "Failed to confirm payment, please try again"
+          this.spinner.hide();
+        });
+      }
+      else{
+        this.paymentFailed = true;
+        this.paymentError = "Critical error, You cannot complete this order.  Please click contact support to resolve";
+        this.spinner.hide();
+      }
+    },
+    (error) => {
+      console.log(error);
+      this.paymentFailed = true;
+      this.paymentError = "Critical error, You cannot complete this order.  Please click contact support to resolve"
+      this.spinner.hide();
+    });    
   }
   private updateTotals(order: IOrder) {
     this.orderTotals = {

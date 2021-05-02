@@ -2,7 +2,7 @@
     "authEndpoint" : "https://kruderauthserver-test.azurewebsites.net/api",
     "dataEndpoint" : "https://onlineordersapi.azurewebsites.net/api",
     "countryId" : 1,
-    "appName" : "Coogans",
+    "appName" : "FreshMeat",
     "companyId": 1,
     "phoneCode": 353,
     "stripeKey": "pk_test_51IYcQeBVKPst9rcG3nvkMlWONty3S8PbmGlCuzVVGKUaBfGBTHFIWi40ALDBCmwiKcVlxJrJifgl2lWxAKfKQT2k00jrGyfmQ0"

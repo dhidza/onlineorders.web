@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CrudResponse } from '../models/crud-response';
 import { ICompanyProductModel } from '../interfaces/icompany-product-model';
 import { ICountyModel } from '../interfaces/icounty-model';
+import { IContactModel } from '../interfaces/icontact-model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,17 @@ export class ListingService {
   getProducts(productId : number):  Observable<CrudResponse<ICompanyProductModel[]>>{  
     return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/products/" + 
               this.config.companyId + "/" + productId, 
+       {headers: this.setHeaders()});
+  }
+
+  getTopSellers():  Observable<CrudResponse<ICompanyProductModel[]>>{  
+    return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/topsellers/" + 
+              this.config.companyId, 
+       {headers: this.setHeaders()});
+  }
+
+  contactUs(model: IContactModel): Observable<any>{  
+    return this._http.post<any>(this.config.dataEndpoint + "/listings/contact",model, 
        {headers: this.setHeaders()});
   }
 

@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatControlsModuleModule } from './mat-controls-module/mat-controls-module.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
 import { ConfigService } from './config/config.service';
@@ -25,6 +24,14 @@ import { DeliveryComponent } from './delivery/delivery.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { NavLinksComponent } from './nav-links/nav-links.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { TopSellersComponent } from './top-sellers/top-sellers.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 export function AppInit(configService: ConfigService){
   return () => {
@@ -34,8 +41,7 @@ export function AppInit(configService: ConfigService){
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
+    AppComponent, 
     RegisterComponent,
     VerifyPinComponent,
     LoginComponent,
@@ -49,7 +55,13 @@ export function AppInit(configService: ConfigService){
     DialogDeliveryAddressComponent,
     DeliveryComponent,
     FooterComponent,
-    HomeComponent   
+    HomeComponent,
+    NavLinksComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    TestimonialsComponent,
+    TopSellersComponent,
+    AboutUsComponent   
   ],
   imports: [
     BrowserModule,
@@ -59,7 +71,8 @@ export function AppInit(configService: ConfigService){
     ReactiveFormsModule,
     HttpClientModule,
     MatControlsModuleModule,   
-  
+    NgxSpinnerModule,
+    SlickCarouselModule,
     NgxStripeModule.forRoot("pk_test_51IYcQeBVKPst9rcG3nvkMlWONty3S8PbmGlCuzVVGKUaBfGBTHFIWi40ALDBCmwiKcVlxJrJifgl2lWxAKfKQT2k00jrGyfmQ0")
   ], 
   providers: [

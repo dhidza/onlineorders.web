@@ -31,6 +31,10 @@ export class OrderService {
     return this._http.post<CrudResponse<IStripeChargeResponse>>(this.config.dataEndpoint + "/payment/charge" , model, {headers: this.setHeaders()});
   }
 
+  initiateOrder(orderCode: string): Observable<CrudResponse<IStripeChargeResponse>> {
+    return this._http.get<CrudResponse<IStripeChargeResponse>>(this.config.dataEndpoint + "/payment/initiate/" + orderCode ,  {headers: this.setHeaders()});
+  }
+
   private setHeaders() : HttpHeaders{
     const headers = new HttpHeaders()
       .set('AppName', this.config.appName);

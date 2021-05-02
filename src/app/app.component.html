@@ -3,8 +3,8 @@
         <div id="side-menu-title" class="side-menu-item"></div>
         <div *ngIf="!authService.isLoggedIn()"  class="side-menu-item" (click)="login()">Login</div>
         <div *ngIf="authService.isLoggedIn()"   class="side-menu-item" (click)="logout()">Logout</div>
-        <div  class="side-menu-item">About</div>
-        <div  class="side-menu-item">Contact</div>
+        <div  class="side-menu-item" (click)="about()">About</div>
+        <div  class="side-menu-item" (click)="about()">Contact</div>
     </mat-sidenav>    
     <mat-sidenav-content>
         <mat-toolbar color="accent" role="heading">
@@ -14,25 +14,15 @@
                 </button>
             </div>
             <div>
-                <a routerLink="/categories">OnlineOrders</a>
+                <a routerLink="/home" id="logo"><img class="logo" src="assets/images/freshmeatlogo.png"></a>
             </div>
             <span class="example-spacer"></span>
-            <div fxFlex fxLayout fxLayoutAlign="end" class="nav-links">
-                <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-                    <li *ngIf="!authService.isLoggedIn()" ><a  routerLink="login">Login</a></li>
-                    <li *ngIf="authService.isLoggedIn()" ><a (click)="logout()">Logout</a></li>
-                    <li><a routerLink="/about">About</a></li>
-                    <li><a routerLink="/contact">Contact</a></li>
-                </ul>
-            </div>
-            <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-                <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-                    <li><a style="padding:0px" (click)="showCart()"><img src="assets/images/icons/shopping-basket.png" width="45px"></a></li>
-                </ul>
-            </div>
+            <app-nav-links></app-nav-links>
         </mat-toolbar>
-        <main>
-            <router-outlet></router-outlet>           
+        <main  (click)="closeSideMenu()">
+            <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true">Please wait</ngx-spinner>
+            <router-outlet></router-outlet>    
+            <div class="u-clearfix"></div>       
         </main>
     </mat-sidenav-content>
 </mat-sidenav-container>

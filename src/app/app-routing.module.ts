@@ -12,15 +12,21 @@ import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 import { DeliveryComponent } from './delivery/delivery.component';  
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
-  { path: '', component: CategoriesComponent },
-  { path: 'home', component: CategoriesComponent },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutUsComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify', component: VerifyPinComponent },
   { path: 'success', component: SuccessComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'requestreset', component: ForgotPasswordComponent },
+  { path: 'reset/:token/:email', component: ResetPasswordComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'products/:id', component: ProductsComponent},
   { path: 'cart/:id', component: AddToCartComponent},

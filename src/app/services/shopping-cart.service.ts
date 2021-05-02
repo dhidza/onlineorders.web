@@ -38,10 +38,17 @@ export class ShoppingCartService {
     return this._http.patch<CrudResponse<IOrder>>(this.config.dataEndpoint + "/shoppingcart", 
               data, {headers: this.setHeaders()});
   }
+
   getShoppingCart(orderId: number, orderCode: string): Observable<CrudResponse<IOrder>> {
     return this._http.get<CrudResponse<IOrder>>(this.config.dataEndpoint + "/shoppingcart/summary/" 
               + orderId + "/" + orderCode, {headers: this.setHeaders()});
   }
+
+  getBasketData(orderId: number, orderCode: string): Observable<CrudResponse<IOrder>> {
+    return this._http.get<CrudResponse<IOrder>>(this.config.dataEndpoint + "/shoppingcart/basket/" 
+              + orderId + "/" + orderCode, {headers: this.setHeaders()});
+  }
+
 
   deleteOrderProduct(orderCode: string, orderProductId: number): Observable<CrudResponse<IOrder>> {
     return this._http.delete<CrudResponse<IOrder>>(this.config.dataEndpoint + "/shoppingcart/" 

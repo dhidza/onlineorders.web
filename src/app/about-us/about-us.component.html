@@ -1,0 +1,75 @@
+<div class="about-holder" style="background-color: transparent;">   
+<div class="about-title">
+    <div class="t-title">           
+        <div class="text-content">About Us</div>
+    </div>
+</div>  
+</div>
+
+<div class="about-holder">   
+    <div class="inner-holder">   
+    <p>
+        At FreshMeat.ie, We offer the delivery of high-quality meat produce such as Beef, Pork, Chicken, Lamb.  All our products are sourced from reputable suppliers such as Coogan Meats in Trim and XYZ 
+        <br /><br />
+        100% Irish produce traceable to source 
+    </p>
+    <br /> 
+    <h2>Affordable Delivery</h2>
+    <p>
+        We are growing on our delivery network covering most of the counties in Ireland.  
+        Our delivery service is effective and complies with COVID-19 regulations.  
+        Our delivery fees are competitive and vary based on the counties you order from.     
+    </p>
+    <br />   
+    <h2>Security and Savings</h2>
+    <p>
+        All our payments are secure through STRIPE. Your card details are processed securely through the stripe pipeline 
+        and we have 3D secure in place.
+        <br /> <br /> 
+        We guarantee to save you money and time by using our service whilst complying with Covid regulations.  
+        Our delivery fees will always be lower than your expense for travelling to your local butchery.        
+    </p>
+   <br />   
+   <h2>Contact Us</h2>
+    <p>
+        You can reach directly using our chat service by clicking the button at the bottom right of your screen.  
+        Our live agents will respond to you as soon as possible
+    </p>
+   
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" >
+    <div class="form-success" *ngIf="serverSuccess">
+        Your inquiry has been submitted.  One of our representatives will get in touch with you shorttly.
+    </div>
+    <br />
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Full name</mat-label>
+            <input matInput type="name" formControlName="name"  #name/>    
+            <mat-hint>Your full name</mat-hint>
+            <mat-error *ngIf="contactForm.get('name').hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+    </p>  
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Email Address</mat-label>
+            <input matInput type="email" formControlName="email"  #email/>    
+            <mat-hint>Your email address</mat-hint>
+            <mat-error *ngIf="contactForm.get('email').hasError('required')">Email is required</mat-error> 
+            <mat-error *ngIf="contactForm.get('email').hasError('email')">Enter valid email</mat-error>       
+        </mat-form-field>
+    </p>  
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Message</mat-label>
+            <textarea matInput  placeholder="Enter your Inquiry" formControlName="message"></textarea>  
+            <mat-hint>Your Inquiry</mat-hint>
+            <mat-error *ngIf="contactForm.get('message').hasError('required')">Enter your message</mat-error>
+        </mat-form-field>
+    </p>
+    <br />
+    <button mat-raised-button color="accent" class="primary" type="submit">Submit Inquiry</button>
+    </form>
+    <div class="u-clearfix"></div>
+</div>
+</div>
+<div class="u-clearfix"></div>
