@@ -15,14 +15,14 @@ fi
 if [[ -z "${ORDERS_ONLINE_API_HOST}" ]]; then
   echo "ORDERS_ONLINE_API_HOST Environment variable is not found"
 else
-  contents="$(cat config.json | jq '.dataEndpoint = "'$HTTP_SCHEME'://'$ORDERS_ONLINE_API_HOST'"' config.json)" && \
+  contents="$(cat config.json | jq '.dataEndpoint = "'$HTTP_SCHEME'://'$ORDERS_ONLINE_API_HOST'/api"' config.json)" && \
   echo "${contents}" > config.json
 fi
 
 if [[ -z "${KRUDER_API_HOST}" ]]; then
   echo "KRUDER_API_HOST Environment variable is not found"
 else
-  contents="$(cat config.json | jq '.authEndpoint = "'$HTTP_SCHEME'://'$KRUDER_API_HOST'"' config.json)" && \
+  contents="$(cat config.json | jq '.authEndpoint = "'$HTTP_SCHEME'://'$KRUDER_API_HOST'/api"' config.json)" && \
   echo "${contents}" > config.json
 fi
 
