@@ -50,10 +50,11 @@ export class LoginComponent implements OnInit {
           const strRedirectModel = sessionStorage.getItem('redirectModel');
           if (!strRedirectModel) 
             this.router.navigateByUrl('/categories');
-          
-          const redirectModel : RedirectModel = JSON.parse(strRedirectModel);
-          sessionStorage.removeItem('redirectModel');
-          this.router.navigateByUrl(redirectModel.redirectUri);
+          else{
+            const redirectModel : RedirectModel = JSON.parse(strRedirectModel);
+            sessionStorage.removeItem('redirectModel');
+            this.router.navigateByUrl(redirectModel.redirectUri);
+          }
         },
         (error) => {
           this.serverError = true;
