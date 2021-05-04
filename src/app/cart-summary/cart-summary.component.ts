@@ -34,7 +34,7 @@ export class CartSummaryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();  
+      });  
     }); 
   }
 
@@ -61,7 +61,7 @@ export class CartSummaryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();
+      });
   }
 
   reduceQuantity(id: number){
@@ -78,7 +78,7 @@ export class CartSummaryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();
+      });
     }       
   }
 
@@ -93,7 +93,7 @@ export class CartSummaryComponent implements OnInit {
     },
     (error) => {
       console.log(error);
-    }).unsubscribe(); 
+    }); 
   }
 
   delivery(){    

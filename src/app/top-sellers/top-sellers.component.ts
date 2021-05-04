@@ -21,7 +21,7 @@ export class TopSellersComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();  
+      });  
   }
 
   selectProduct(id: number){

@@ -66,7 +66,7 @@ export class CheckoutComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();  
+      });  
     }); 
   }
 
@@ -119,7 +119,7 @@ export class CheckoutComponent implements OnInit {
                 //this should never ever happen
                 console.log(error);
                 this.spinner.hide();
-            }).unsubscribe();  
+            });  
            }
         },
         (error) => {
@@ -127,7 +127,7 @@ export class CheckoutComponent implements OnInit {
           this.paymentFailed = true;
           this.paymentError = "Failed to confirm payment, please try again"
           this.spinner.hide();
-        }).unsubscribe();
+        });
       }
       else{
         this.paymentFailed = true;
@@ -140,7 +140,7 @@ export class CheckoutComponent implements OnInit {
       this.paymentFailed = true;
       this.paymentError = "Critical error, You cannot complete this order.  Please click contact support to resolve"
       this.spinner.hide();
-    }).unsubscribe();    
+    });    
   }
   private updateTotals(order: IOrder) {
     this.orderTotals = {

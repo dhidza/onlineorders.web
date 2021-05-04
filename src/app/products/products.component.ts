@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit {
         (error) => {
           console.log(error);
         });  
-      }).unsubscribe();  
+      });  
   }
   selectProduct(id: number){
     this.router.navigateByUrl('/cart/' + id);

@@ -38,7 +38,7 @@ export class AddToCartComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      }).unsubscribe();  
+      });  
     });  
   }
 
@@ -64,7 +64,7 @@ export class AddToCartComponent implements OnInit {
     (error) => {
       console.log(error);
       this.spinner.hide();
-    }).unsubscribe();
+    });
   }
 
   backToList(){

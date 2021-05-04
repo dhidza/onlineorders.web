@@ -65,13 +65,13 @@ export class RegisterComponent implements OnInit {
               this.router.navigateByUrl('/verify');
             else
               this.router.navigateByUrl('/requestverification');
-          }).unsubscribe();
+          });
         },
         (error) => {
           this.serverError = true;
           this.serverErrorMessage = error.error.message;      
           this.spinner.hide();     
-        }).unsubscribe();
+        });
     }
   }
 

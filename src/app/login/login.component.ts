@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
           this.serverError = true;
           this.serverErrorMessage = error.error.message;
           this.spinner.hide();
-        }).unsubscribe();
+        });
        
     }
   } 
