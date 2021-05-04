@@ -2,19 +2,19 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body{
-    margin: 0;
-    font-family: 'Nunito', 'sans-serif';
-    font-size: 18px;
-}
-html, body {  
+
+html {  
+  height:100%;
   background: url(assets/images/background2_fade.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  font-size: 18px;
+  height:100%;
+}
+
 .body-content{
   margin: 0 auto;
   max-width: 692px;
@@ -39,4 +39,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .form-error{
   color:red;
+}
+.u-clearfix{
+  clear:both;
 }

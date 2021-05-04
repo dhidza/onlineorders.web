@@ -3,8 +3,15 @@ mat-sidenav-content, mat-sidenav {
     height: 100%;
 }
 
+mat-sidenav-container{   
+    min-height: 100%;
+    margin-bottom: -275px;
+    padding-bottom: 275px;
+}
+
 mat-sidenav-content {
     min-width:340px;
+    margin-bottom: 30px;
 }
 
 mat-sidenav{
