@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit {
       (error) => {
         this.serverError = true;
         this.serverErrorMessage = error.error.message;
-      });
+      }).unsubscribe();
     }
   }
 

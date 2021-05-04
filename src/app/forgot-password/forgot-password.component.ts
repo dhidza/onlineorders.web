@@ -47,7 +47,7 @@ export class ForgotPasswordComponent implements OnInit {
         sessionStorage.setItem('redirectModel', JSON.stringify(redirectModel));  
         this.spinner.hide();     
         this.router.navigateByUrl('/success');
-      });
+      }).unsubscribe();
     }
   }
 }

@@ -32,7 +32,7 @@ export class DialogDeliveryAddressComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      });        
+      }).unsubscribe();        
     }
 
   ngOnInit(): void {   

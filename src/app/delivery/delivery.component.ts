@@ -47,7 +47,7 @@ export class DeliveryComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-      });  
+      }).unsubscribe();  
     }); 
   }
 
