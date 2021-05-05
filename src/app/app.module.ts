@@ -32,12 +32,15 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { TopSellersComponent } from './top-sellers/top-sellers.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
+import { CookieService } from 'ngx-cookie-service'
 
 export function AppInit(configService: ConfigService){
   return () => {
     return configService.load();
   }
 }
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,8 @@ export function AppInit(configService: ConfigService){
     ResetPasswordComponent,
     TestimonialsComponent,
     TopSellersComponent,
-    AboutUsComponent   
+    AboutUsComponent,
+    CookieConsentComponent   
   ],
   imports: [
     BrowserModule,
@@ -76,10 +80,12 @@ export function AppInit(configService: ConfigService){
     NgxStripeModule.forRoot("pk_test_51IYcQeBVKPst9rcG3nvkMlWONty3S8PbmGlCuzVVGKUaBfGBTHFIWi40ALDBCmwiKcVlxJrJifgl2lWxAKfKQT2k00jrGyfmQ0")
   ], 
   providers: [
+    CookieService,
     {
       provide: AppConfig,
       deps:[HttpClient],
-      useExisting: ConfigService
+      useExisting: ConfigService,
+     
     },
     {
       provide: APP_INITIALIZER,
