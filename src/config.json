@@ -1,6 +1,6 @@
 {
     "authEndpoint" : "https://kruderauthserver-test.azurewebsites.net/api",
-    "dataEndpoint" : "https://onlineordersapi.azurewebsites.net/api",
+    "dataEndpoint" : "https://localhost:44365/api",
     "countryId" : 1,
     "appName" : "FreshMeat",
     "companyId": 1,

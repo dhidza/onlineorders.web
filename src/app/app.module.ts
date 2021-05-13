@@ -33,7 +33,9 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { TopSellersComponent } from './top-sellers/top-sellers.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CookieConsentComponent } from './cookie-consent/cookie-consent.component';
-import { CookieService } from 'ngx-cookie-service'
+import { CookieService } from 'ngx-cookie-service';
+import { LegalComponent } from './legal/legal.component'
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 export function AppInit(configService: ConfigService){
   return () => {
@@ -65,7 +67,8 @@ export function AppInit(configService: ConfigService){
     TestimonialsComponent,
     TopSellersComponent,
     AboutUsComponent,
-    CookieConsentComponent   
+    CookieConsentComponent,
+    LegalComponent   
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,7 @@ export function AppInit(configService: ConfigService){
     MatControlsModuleModule,   
     NgxSpinnerModule,
     SlickCarouselModule,
+    PdfViewerModule,
     NgxStripeModule.forRoot("pk_test_51IYcQeBVKPst9rcG3nvkMlWONty3S8PbmGlCuzVVGKUaBfGBTHFIWi40ALDBCmwiKcVlxJrJifgl2lWxAKfKQT2k00jrGyfmQ0")
   ], 
   providers: [

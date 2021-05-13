@@ -34,6 +34,11 @@ header span{
 	color: #3F71EA;
 }
 
+.terms{
+	color: #e0ac1c;
+	margin-top: 20px;
+	text-decoration: underline;
+}
 
 /* The footer is fixed to the bottom of the page */
 
@@ -67,6 +72,7 @@ footer{
 	text-align: left;
 	font: bold 16px sans-serif;
 	padding: 50px 50px 60px 50px;
+	z-index:100000;
 	// margin-top: 80px;
 }
 
@@ -91,9 +97,6 @@ footer{
 
 /* The company logo */
 
-.footer-distributed .footer-left img{
-	width: 30%;
-}
 
 .footer-distributed h3 span{
 	color:  #e0ac1c;

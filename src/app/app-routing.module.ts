@@ -15,6 +15,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { LegalComponent } from './legal/legal.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'requestreset', component: ForgotPasswordComponent },
   { path: 'reset/:token/:email', component: ResetPasswordComponent },
-  { path: 'categories', component: CategoriesComponent },
+  { path: 'legal', component: LegalComponent },
   { path: 'products/:id', component: ProductsComponent},
   { path: 'cart/:id', component: AddToCartComponent},
   { path: 'summary/:id/:code', component: CartSummaryComponent, canActivate:[AuthGuardService]},

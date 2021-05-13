@@ -1,0 +1,18 @@
+.u-clearfix:before,
+.u-clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.u-clearfix:after {
+  clear: both;
+}
+
+.u-clearfix {
+  *zoom: 1;
+}
+
+.body-content{
+    width:900px;
+    max-width:900px;
+}
