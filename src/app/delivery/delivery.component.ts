@@ -22,6 +22,7 @@ export class DeliveryComponent implements OnInit {
   model: CrudResponse<IOrder>;
   orderTotals: IOrderTotals;
   loaded: boolean = false;
+  termsAccepted:boolean = false;
   
   constructor( private router: Router, private orderService: OrderService, private activatedRoute: ActivatedRoute, 
     private cartService: ShoppingCartService, private authService: AuthService, public dialog: MatDialog) { }

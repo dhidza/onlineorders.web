@@ -5,13 +5,17 @@
     <div class="card-nav" style="padding: 16px 0 0 20px">
       <button mat-raised-button class="shorter" color="warn" (click)="backToCart()" style="float: right;">Back to cart</button>
      <div class="u-clearfix"></div> 
+     <br />
     </div>
    
     <div class="card-container" *ngIf="loaded">   
         <div class="card">
-            <div class="card-title">Delivery Details</div>
-            <div class="u-clearfix"></div>
-            <br />  
+            <p style="color:#e0ac1c; margin-bottom: 0; margin-top:12px;">
+            Please note, you have to accept terms and conditions to place your order.
+            <br />
+            Please read our <a routerLink="/legal">Terms And Conditions</a> here.
+            </p>
+
             <div class="invalid-message" *ngIf="!deliveryDetails.isValidDeliveryDetails">
                 To complete your order, please revise and keep or change your delivery delivery address and eircode listed below
             </div> 
@@ -29,6 +33,9 @@
                 Phone: {{deliveryDetails.deliveryPhone}}
             </p>
             <br />
+            <p style="color:green">
+                We deliver on WEDNESDAYS and FRIDAYS.  You will receive an SMS message when your package is en-route.
+            </p>
             <div class="card-title">Order Totals</div>
             <br />
             <div class="card-nav card-container no-border">   
@@ -46,7 +53,7 @@
                         <tr class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails">
                             <td width="145"> Delivery Fee</td><td>{{orderTotals.deliveryFee}}</td>
                         </tr>
-                        <tr class="card-author block subtle" style="color:#50c27c">
+                        <tr class="card-author block subtle" style="color: green; font-size: 15px;">
                             <td width="145"> Order Total</td><td>{{orderTotals.orderTotal}}</td>
                         </tr>
                     </table>        
@@ -54,9 +61,12 @@
                 <div class="u-clearfix"></div>
             </div>
             <div class="u-clearfix"></div>
-            <div class="card-nav card-container no-border" *ngIf="model.returnValue.isValidDeliveryDetails">
+            <mat-checkbox class="custom-check" [(ngModel)]="termsAccepted">I Accept Terms and Conditions</mat-checkbox>
+            <div class="card-nav card-container no-border" *ngIf="model.returnValue.isValidDeliveryDetails && termsAccepted">
                 <button mat-raised-button color="accent" class="fullwidth" (click)="checkOut()">Pay For Order</button>
             </div>
+            <div class="u-clearfix"></div>
+            <br />
         </div>
     </div>
 </div>

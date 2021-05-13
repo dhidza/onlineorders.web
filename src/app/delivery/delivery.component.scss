@@ -45,8 +45,7 @@
 }
 .media{
     width:80px;
-    float:left;
-    opacity: 0.5;
+    float:left;    
     padding-top:4px;
 }
 .totals{
@@ -213,6 +212,9 @@
     padding-right: 6px;
 }
 
+.custom-check{
+  color: #404040;
+}
 .minus{
     border:1px solid pink;
     cursor: pointer;
