@@ -16,6 +16,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { LegalComponent } from './legal/legal.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductsComponent},
   { path: 'cart/:id', component: AddToCartComponent},
   { path: 'summary/:id/:code', component: CartSummaryComponent, canActivate:[AuthGuardService]},
+  { path: 'orders', component: OrderHistoryComponent, canActivate:[AuthGuardService]},
   { path: 'delivery/:id/:code', component: DeliveryComponent, canActivate:[AuthGuardService]},
   { path: 'checkout/:id/:code', component: CheckoutComponent, canActivate:[AuthGuardService]}
 ];

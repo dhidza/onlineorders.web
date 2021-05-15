@@ -36,6 +36,7 @@ import { CookieConsentComponent } from './cookie-consent/cookie-consent.componen
 import { CookieService } from 'ngx-cookie-service';
 import { LegalComponent } from './legal/legal.component'
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 export function AppInit(configService: ConfigService){
   return () => {
@@ -68,7 +69,8 @@ export function AppInit(configService: ConfigService){
     TopSellersComponent,
     AboutUsComponent,
     CookieConsentComponent,
-    LegalComponent   
+    LegalComponent,
+    OrderHistoryComponent   
   ],
   imports: [
     BrowserModule,

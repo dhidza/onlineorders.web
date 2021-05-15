@@ -1,4 +1,3 @@
-import { ICompanyProductModel } from './icompany-product-model';
 import { IOrderProduct } from './iorder-product';
 import { ICountyModel } from './icounty-model';
 import { IUserProfile } from './iuser-profile';
@@ -14,6 +13,8 @@ export interface IOrder {
     totalProductDisplay: string;
     deliveryCountyId : number;
     deliveryCounty: ICountyModel;
+    orderDeliveryFeeCents: number;
+    orderDeliveryFeeDisplay: string;
     totalOrderDisplay: string;
     totalOrderCents: number;
     totalQuantity: number;

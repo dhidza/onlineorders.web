@@ -11,6 +11,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatTableModule} from '@angular/material/table';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatToolbarModule,
     MatSidenavModule,
     MatTabsModule,
+    MatTableModule,
     MatCarouselModule.forRoot(),
   ],
   exports: [  
@@ -41,6 +43,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatToolbarModule,
     MatSidenavModule,
     MatTabsModule,
+    MatTableModule,
     MatCarouselModule
    ]
 })

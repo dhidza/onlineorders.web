@@ -37,4 +37,8 @@ export class AppComponent {
     this.opened = false;
     this.router.navigateByUrl("about");
   }
+  orders(){
+    this.opened = false;
+    this.router.navigateByUrl("orders");
+  }
 }

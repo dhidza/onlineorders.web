@@ -133,7 +133,7 @@ export class DeliveryComponent implements OnInit {
     orderTotal:order.totalOrderDisplay,
     productTotal: order.totalProductDisplay,
     serviceFee: order.deliveryCounty?.serviceFeeDisplay,
-    deliveryFee: order.deliveryCounty?.deliveryFeeDisplay,
+    deliveryFee: order.orderDeliveryFeeDisplay,
     totalQuantity: order.totalQuantity
   };
 }
