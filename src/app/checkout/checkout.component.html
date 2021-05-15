@@ -21,9 +21,9 @@
             </mat-form-field>
         </p>  
         <br />
-        <ngx-stripe-card id="card-element" class="field">
-          [options]="cardOptions"
-          [elementOptions]="elementOptions"
+        <ngx-stripe-card id="card-element" [stripe]="stripe" class="field">
+          <!-- [options]="cardOptions"
+          [elementOptions]="elementOptions" -->
         </ngx-stripe-card>  
         <br />
         <button mat-raised-button color="accent" type="submit">Pay for Order</button>

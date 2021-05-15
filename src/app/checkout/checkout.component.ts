@@ -4,13 +4,13 @@ import { OrderService } from '../services/order.service';
 import { IOrderTotals } from '../interfaces/iorder-totals';
 import { IOrder } from '../interfaces/iorder';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { StripeCardComponent, StripeService } from 'ngx-stripe';
+import { StripeCardComponent, StripeInstance,
+  StripeFactoryService  } from 'ngx-stripe';
 import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IStripeChargeRequest } from '../interfaces/istripe-charge-request';
-import { PaymentIntentStateEnum } from '../interfaces/istripe-charge-response';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedCartUpdateService } from '../services/shared-cart-update.service';
+import { AppConfig } from '../config/app-config';
 
 
 @Component({
@@ -39,6 +39,8 @@ export class CheckoutComponent implements OnInit {
     locale: 'auto'
   };
 
+
+  stripe: StripeInstance;
   stripeForm: FormGroup;
   orderTotals: IOrderTotals;
 
@@ -49,9 +51,11 @@ export class CheckoutComponent implements OnInit {
   constructor( private activatedRoute: ActivatedRoute, 
         private router: Router,  private cartService: ShoppingCartService, private spinner: NgxSpinnerService,
         private orderService: OrderService, private sharedCartService: SharedCartUpdateService, 
-        private fb:FormBuilder,private stripeService: StripeService ) { }
+        private fb:FormBuilder, private config: AppConfig,
+        private stripeFactory: StripeFactoryService ) { }
 
   ngOnInit(): void { 
+    this.stripe = this.stripeFactory.create(this.config.stripeKey);
     this.stripeForm = this.fb.group({
       name: ['', [Validators.required]]
     });
@@ -80,10 +84,10 @@ export class CheckoutComponent implements OnInit {
       this.paymentError = "Failed to confirm payment, please try again";
       return;
     }
-    this.orderService.initiateOrder(this.orderCode)
+    this.orderService.initiateOrder(this.orderCode, name)
     .subscribe(res => {    
       if(res.success){
-        this.stripeService
+        this.stripe
         .confirmCardPayment(res.returnValue.paymentReference, {
           payment_method: {
             card: this.card.element
@@ -102,6 +106,7 @@ export class CheckoutComponent implements OnInit {
             this.orderService.chargeOrder({
               orderCode : this.orderCode,
               source: result.paymentIntent.id
+            
             })
             .subscribe(res => { 
               const redirectModel = {

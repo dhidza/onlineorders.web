@@ -83,7 +83,7 @@ export function AppInit(configService: ConfigService){
     NgxSpinnerModule,
     SlickCarouselModule,
     PdfViewerModule,
-    NgxStripeModule.forRoot("pk_test_51IYcQeBVKPst9rcG3nvkMlWONty3S8PbmGlCuzVVGKUaBfGBTHFIWi40ALDBCmwiKcVlxJrJifgl2lWxAKfKQT2k00jrGyfmQ0")
+    NgxStripeModule.forRoot()
   ], 
   providers: [
     CookieService,
