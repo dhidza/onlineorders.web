@@ -23,6 +23,7 @@ export class DeliveryComponent implements OnInit {
   orderTotals: IOrderTotals;
   loaded: boolean = false;
   termsAccepted:boolean = false;
+  nextDelivery: string = '';
   
   constructor( private router: Router, private orderService: OrderService, private activatedRoute: ActivatedRoute, 
     private cartService: ShoppingCartService, private authService: AuthService, public dialog: MatDialog) { }
@@ -33,6 +34,7 @@ export class DeliveryComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.model = res;
+        this.nextDelivery = res.returnValue.nextDeliveryDay;
         this.deliveryDetails = {        
           isValidDeliveryDetails : res.returnValue.isValidDeliveryDetails        
         }

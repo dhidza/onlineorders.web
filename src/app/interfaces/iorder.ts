@@ -10,6 +10,7 @@ export interface IOrder {
     orderCompanyProducts: IOrderProduct[];   
     deliveryAddress: string;
     deliveryPhone: string;
+    nextDeliveryDay: string;
     totalProductDisplay: string;
     deliveryCountyId : number;
     deliveryCounty: ICountyModel;

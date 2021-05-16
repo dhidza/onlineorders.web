@@ -110,7 +110,7 @@ export class CheckoutComponent implements OnInit {
             })
             .subscribe(res => { 
               const redirectModel = {
-                message : 'Thank you for your order.  A confirmation email has been sent to you.',
+                message : 'Thank you for your order.  A confirmation email has been sent to you. Please check your spam folder if you cannot see your receipt',
                 buttonText : 'Home',
                 redirectUri : '/home' 
                }
