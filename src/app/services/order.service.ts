@@ -40,6 +40,20 @@ export class OrderService {
     return this._http.get<CrudResponse<IOrder[]>>(this.config.dataEndpoint + "/order/all",  {headers: this.setHeaders()});
   }
 
+  adminOrders(): Observable<CrudResponse<IOrder[]>> {
+    return this._http.get<CrudResponse<IOrder[]>>(this.config.dataEndpoint + "/order/company",  {headers: this.setHeaders()});
+  }
+
+  informDeliveryEnroute(orderCode: string): Observable<CrudResponse<ICompleteOrderResponse>> {
+    return this._http.get<CrudResponse<ICompleteOrderResponse>>(this.config.dataEndpoint + "/delivery/pickup/" 
+              + orderCode , {headers: this.setHeaders()});
+  }
+
+  markOrderAsDelivered(orderCode: string): Observable<CrudResponse<ICompleteOrderResponse>> {
+    return this._http.get<CrudResponse<ICompleteOrderResponse>>(this.config.dataEndpoint + "/delivery/deliver/" 
+              + orderCode , {headers: this.setHeaders()});
+  }
+
   private setHeaders() : HttpHeaders{
     const headers = new HttpHeaders()
       .set('AppName', this.config.appName);

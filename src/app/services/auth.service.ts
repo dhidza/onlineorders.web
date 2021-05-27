@@ -78,10 +78,21 @@ export class AuthService {
     {headers: this.setHeaders()});
   }
 
-  isLoggedIn(){
+  isAdmin(): boolean{
+    let result : boolean = false;
     const token =  localStorage.getItem("token");  
     if(token){
-      const decoded = jwt_decode(token);     
+      const decoded = jwt_decode(token);   
+      const roles =  decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+      result  = roles.includes('Administrator') || roles === 'Administrator';
+    }
+    return result;
+  }
+
+  isLoggedIn(): boolean{   
+    const token =  localStorage.getItem("token");  
+    if(token){
+      const decoded = jwt_decode(token);       
       if (Date.now() >= decoded.exp * 1000) {
         return false;
       }

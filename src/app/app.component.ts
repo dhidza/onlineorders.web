@@ -41,4 +41,8 @@ export class AppComponent {
     this.opened = false;
     this.router.navigateByUrl("orders");
   }
+  adminOrders(){
+    this.opened = false;
+    this.router.navigateByUrl("admin");
+  }
 }

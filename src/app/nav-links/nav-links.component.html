@@ -5,6 +5,7 @@
         <li><a routerLink="/about">About</a></li>
         <li><a routerLink="/about">Contact</a></li>
         <li><a routerLink="/orders">My Orders</a></li>
+        <li  *ngIf="authService.isAdmin()"><a routerLink="/admin">Admin Orders</a></li>
     </ul>
 </div>
 <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs style="float: left;">

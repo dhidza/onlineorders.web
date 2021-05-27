@@ -6,7 +6,8 @@
         <div *ngIf="authService.isLoggedIn()"   class="side-menu-item" (click)="logout()">Logout</div>
         <div  class="side-menu-item" (click)="about()">About</div>
         <div  class="side-menu-item" (click)="about()">Contact</div>
-        <div  class="side-menu-item" (click)="orders()">My Orders</div>
+        <div  *ngIf="authService.isLoggedIn()" class="side-menu-item" (click)="orders()">My Orders</div>
+        <div  *ngIf="authService.isAdmin()" class="side-menu-item" (click)="adminOrders()">Admin Orders</div>
     </mat-sidenav>    
     <mat-sidenav-content>
         <mat-toolbar color="accent" role="heading">
