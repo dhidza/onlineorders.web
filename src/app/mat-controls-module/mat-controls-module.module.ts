@@ -13,6 +13,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatSidenavModule,
     MatTabsModule,
     MatTableModule,
+    MatExpansionModule,
     MatCarouselModule.forRoot(),
   ],
   exports: [  
@@ -44,6 +46,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatSidenavModule,
     MatTabsModule,
     MatTableModule,
+    MatExpansionModule,
     MatCarouselModule
    ]
 })

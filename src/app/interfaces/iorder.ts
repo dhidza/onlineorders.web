@@ -21,5 +21,6 @@ export interface IOrder {
     totalQuantity: number;
     userProfile: IUserProfile;
     isValidDeliveryDetails: boolean;
+    productsSummary?: string;
     eirCode: string;
 }
