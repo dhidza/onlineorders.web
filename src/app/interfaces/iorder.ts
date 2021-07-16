@@ -5,6 +5,8 @@ import { IUserProfile } from './iuser-profile';
 export interface IOrder {
     id: number;
     createdDisplay: string;   
+    finalisedDateDisplay?: string;   
+    deliveryDateDisplay?: string;   
     statusId: number;
     orderCode: string;
     orderCompanyProducts: IOrderProduct[];   
