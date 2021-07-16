@@ -15,7 +15,9 @@
             <mat-panel-title>
               Finalised on &nbsp;{{order.finalisedDateDisplay}} and delivery on {{order.deliveryDateDisplay}}
             </mat-panel-title>
-            <mat-panel-description>              
+            <mat-panel-description>
+              <span *ngIf="order.statusId < 6" (click)="completeOrder(order.orderCode)">Open</span>
+              <span style="color:#057a2c" *ngIf="order.statusId == 6">Delivered</span>             
             </mat-panel-description>
           </mat-expansion-panel-header>
           <p>Phone: 0{{order.deliveryPhone}}  Address: {{order.deliveryAddress}} {{order.eirCode}}  Amount: {{order.totalOrderDisplay}} <br /><br />
