@@ -13,7 +13,7 @@ export class OrderHistoryComponent implements OnInit {
   dataSource;
   public showError = false;
   private loaded = false;
-  displayedColumns: string[] = ['createdDisplay', 'orderCode', 'orderDeliveryFeeDisplay', 'totalOrderDisplay'];
+  displayedColumns: string[] = ['finalisedDateDisplay', 'deliveryDateDisplay', 'orderCode', 'orderDeliveryFeeDisplay', 'totalOrderDisplay'];
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {

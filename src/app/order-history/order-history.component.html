@@ -11,10 +11,15 @@
     </div>
     <table mat-table #table [dataSource]="dataSource">
         
-        <ng-container matColumnDef="createdDisplay">
+        <ng-container matColumnDef="finalisedDateDisplay">
             <th mat-header-cell *matHeaderCellDef> Placed On </th>
-            <td mat-cell *matCellDef="let element"> {{element.createdDisplay}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.finalisedDateDisplay}} </td>
         </ng-container>
+
+        <ng-container matColumnDef="deliveryDateDisplay">
+            <th mat-header-cell *matHeaderCellDef> Delivery </th>
+            <td mat-cell *matCellDef="let element"> {{element.deliveryDateDisplay}} </td>
+        </ng-container>       
        
         <ng-container matColumnDef="orderCode">
             <th mat-header-cell *matHeaderCellDef> Order Code </th>
