@@ -20,6 +20,7 @@ export interface IOrder {
     orderDeliveryFeeDisplay: string;
     totalOrderDisplay: string;
     totalOrderCents: number;
+    totalProductPrice: number;
     totalQuantity: number;
     userProfile: IUserProfile;
     isValidDeliveryDetails: boolean;

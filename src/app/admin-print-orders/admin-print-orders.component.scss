@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+.mat-column-quantity, .mat-column-price, .mat-column-total, .mat-column-productName{
+    width: 20% !important;
+}
+.page-title-button{
+    margin-left: 15px;
+    float:left;
+    margin-top:36px;
+}
+.floating-content{
+    float:left;
+}
+
+.orders-container{
+    background-color: #fff;
+    color:#333;
+    padding: 20px;
+    border-bottom: 1px dashed #000;
+    .order-details{
+        font-size: 11px;
+    }
+    .order-title{
+        font-weight: bold;       
+    }
+}

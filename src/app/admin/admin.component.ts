@@ -7,17 +7,26 @@ import { OrderService } from '../services/order.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['createdDisplay', 'orderCode', 'totalOrderDisplay', 'actions'];
   public showError = false;
-  private loaded = false;
+  private loaded = false; 
+  totalForTrim: number;
+  totalPaid: number;
   dataSource;
   constructor(private orderService: OrderService) { }
 
-  ngOnInit(): void {
-    this.orderService.adminOrders()
+  ngOnInit(): void {   
+    this.orderService.ordersForDelivery()
     .subscribe(res => {
       if(res.success){
         this.dataSource = res.returnValue;
+        this.totalForTrim = this.dataSource.map(a => a.totalProductPrice).reduce(function(a, b)
+        {
+          return a + b;
+        });    
+        this.totalPaid = this.dataSource.map(a => a.totalOrderCents).reduce(function(a, b)
+        {
+          return a + b;
+        });      
         this.loaded = true;
       }
       else{
@@ -29,37 +38,4 @@ export class AdminComponent implements OnInit {
       this.showError = true;
     });
   }
-
-  toDelivery(orderCode: string){
-    this.orderService.informDeliveryEnroute(orderCode)
-    .subscribe(res => {
-      if(res.success){
-        this.ngOnInit();
-      }
-      else{
-        this.showError = true;
-      }
-    },
-    (error) => {
-      console.log(error);
-      this.showError = true;
-    });
-  }
-
-  completeOrder(orderCode: string){
-    this.orderService.markOrderAsDelivered(orderCode)
-    .subscribe(res => {
-      if(res.success){
-        this.ngOnInit();
-      }
-      else{
-        this.showError = true;
-      }
-    },
-    (error) => {
-      console.log(error);
-      this.showError = true;
-    });
-  }
-
 }

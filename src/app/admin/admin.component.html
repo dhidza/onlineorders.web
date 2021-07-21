@@ -1,35 +1,20 @@
 <div class="body-content">
-    <span class="floating-content">
-      <span class="page-title">Customer Orders</span>
-    </span>
-    <div class="u-clearfix"></div>
-    <br />
-    <div class="form-error" *ngIf="showError">
-        <br />
-        There was an error retrieving your order history, please contact support if this persists
-        <br /><br />
-    </div>
-    <mat-accordion>
-        <mat-expansion-panel hideToggle *ngFor="let order of dataSource">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Finalised on &nbsp;{{order.finalisedDateDisplay}} and delivery on {{order.deliveryDateDisplay}}
-            </mat-panel-title>
-            <mat-panel-description>
-              <span *ngIf="order.statusId < 6" (click)="completeOrder(order.orderCode)">Open</span>
-              <span style="color:#057a2c" *ngIf="order.statusId == 6">Delivered</span>             
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Phone: 0{{order.deliveryPhone}}  Address: {{order.deliveryAddress}} {{order.eirCode}}  Amount: {{order.totalOrderDisplay}} <br /><br />
-            <span [innerHTML]="order.productsSummary"></span> 
-            <br /><br />
-            Placed by <span style="color:violet"> {{order.userProfile.fullname}}</span>
-            <br /><br />
-            <mat-icon *ngIf="order.statusId < 5" (click)="toDelivery(order.orderCode)">notifications</mat-icon>&nbsp;&nbsp;
-            <mat-icon *ngIf="order.statusId < 6" (click)="completeOrder(order.orderCode)">done_outline</mat-icon>
-            <span style="color:#057a2c" *ngIf="order.statusId == 6">Delivered</span> 
-          </p>
-        </mat-expansion-panel>
-      </mat-accordion>
-  </div>
-  
+<div class="admin-tab">
+  <a routerLink="/admin/completedorders" class="admin-tab-link">Orders For Delivery</a>
+</div>
+
+<div class="admin-tab">
+  <a routerLink="/admin/deliveryorders" class="admin-tab-link">Orders For TRIM</a>
+  <br /><br />
+  Total Number of Orders: {{dataSource.length}}
+  <br /><br />
+  Total Payment Amount For Trim: {{totalForTrim/100 | currency:'EUR'}}
+  <br />
+</div>
+
+<div class="admin-tab">
+  <a routerLink="/admin/print" class="admin-tab-link">Orders For Customers</a>
+  <br /><br />
+  Total Paid By Customers: {{totalPaid/100 | currency:'EUR'}}
+</div>
+</div>

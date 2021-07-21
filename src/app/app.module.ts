@@ -38,6 +38,9 @@ import { LegalComponent } from './legal/legal.component'
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AdminComponent } from './admin/admin.component';
+import { OrdersForDeliveryComponent } from './orders-for-delivery/orders-for-delivery.component';
+import { AdminCompletedOrdersComponent } from './admin-completed-orders/admin-completed-orders.component';
+import { AdminPrintOrdersComponent } from './admin-print-orders/admin-print-orders.component';
 
 export function AppInit(configService: ConfigService){
   return () => {
@@ -72,7 +75,10 @@ export function AppInit(configService: ConfigService){
     CookieConsentComponent,
     LegalComponent,
     OrderHistoryComponent,
-    AdminComponent   
+    AdminComponent,
+    OrdersForDeliveryComponent,
+    AdminCompletedOrdersComponent,
+    AdminPrintOrdersComponent   
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { LegalComponent } from './legal/legal.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AdminComponent } from './admin/admin.component';
+import { OrdersForDeliveryComponent } from './orders-for-delivery/orders-for-delivery.component';
+import { AdminCompletedOrdersComponent } from './admin-completed-orders/admin-completed-orders.component';
+import { AdminPrintOrdersComponent } from './admin-print-orders/admin-print-orders.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +39,9 @@ const routes: Routes = [
   { path: 'summary/:id/:code', component: CartSummaryComponent, canActivate:[AuthGuardService]},
   { path: 'orders', component: OrderHistoryComponent, canActivate:[AuthGuardService]},
   { path: 'admin', component: AdminComponent, canActivate:[AuthGuardService]},
+  { path: 'admin/deliveryorders', component: OrdersForDeliveryComponent, canActivate:[AuthGuardService]},
+  { path: 'admin/completedorders', component: AdminCompletedOrdersComponent, canActivate:[AuthGuardService]},
+  { path: 'admin/print', component: AdminPrintOrdersComponent, canActivate:[AuthGuardService]},
   { path: 'delivery/:id/:code', component: DeliveryComponent, canActivate:[AuthGuardService]},
   { path: 'checkout/:id/:code', component: CheckoutComponent, canActivate:[AuthGuardService]}
 ];

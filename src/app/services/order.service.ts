@@ -44,6 +44,10 @@ export class OrderService {
     return this._http.get<CrudResponse<IOrder[]>>(this.config.dataEndpoint + "/order/company",  {headers: this.setHeaders()});
   }
 
+  ordersForDelivery(): Observable<CrudResponse<IOrder[]>> {
+    return this._http.get<CrudResponse<IOrder[]>>(this.config.dataEndpoint + "/order/delivery",  {headers: this.setHeaders()});
+  }
+
   informDeliveryEnroute(orderCode: string): Observable<CrudResponse<ICompleteOrderResponse>> {
     return this._http.get<CrudResponse<ICompleteOrderResponse>>(this.config.dataEndpoint + "/delivery/pickup/" 
               + orderCode , {headers: this.setHeaders()});

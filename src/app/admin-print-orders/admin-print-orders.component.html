@@ -1,0 +1,61 @@
+<div class="body-content">
+    <div class="floating-content">
+       <span class="page-title">Orders For Delivery</span>  
+    </div>
+    <div class="page-title-button">
+        <button mat-raised-button color="accent"  (click)="downloadDeliveryOrders()">Download Order Pdf</button>
+    </div>
+    <div class="u-clearfix"></div>
+    <br />
+    <div class="form-error" *ngIf="showError">
+        <br />
+        There was an error retrieving your orders, please contact support if this persists
+        <br /><br />
+    </div>
+        <div class="orders-container" *ngFor="let order of dataSource; let i = index" id="{{order.orderCode}}">    
+            <img class="logo" width="60%" src="assets/images/freshmeatlogo-dark.png">
+            <p>Thanks for using <strong>www.freshmeat.ie</strong> to place your order.  Your order details are listed below.  Please contact us via live chat if you have any issues</p>       
+            <div class="order-details">
+            Customer:  {{order.userProfile.fullname}} (order code : {{order.orderCode}})
+            <br />
+            Finalised On: {{order.finalisedDateDisplay}}
+            <br />
+            Delivery Date: {{order.deliveryDateDisplay}}
+            </div>
+            <table mat-table #table [dataSource]="order.orderCompanyProducts">     
+
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+                </ng-container>       
+            
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                </ng-container>
+        
+                <!-- Weight Column -->
+        
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                </ng-container>
+        
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="productName">
+                    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.companyProduct.product.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="agentCheck">
+                    <th mat-header-cell *matHeaderCellDef> Agent Check</th>
+                    <td mat-cell *matCellDef="let element"> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table >
+            <br />
+            <p>Thanks your order.  Please order again on <strong>www.freshmeat.ie</strong></p>
+        </div>
+    
+    
+  </div>
