@@ -3,7 +3,7 @@
        <span class="page-title">Orders For Delivery</span>  
     </div>
     <div class="page-title-button">
-        <button mat-raised-button color="accent"  (click)="downloadDeliveryOrders()">Download Order Pdf</button>
+        <button mat-raised-button color="accent"  (click)="downloadDeliveryOrdersPdf()">Download Order Pdf</button>
     </div>
     <div class="u-clearfix"></div>
     <br />
@@ -12,34 +12,35 @@
         There was an error retrieving your orders, please contact support if this persists
         <br /><br />
     </div>
-    <div id="orders-list">
-        <div class="orders-container" *ngFor="let order of dataSource; let i = index">
+    <div id="ordersList" #ordersList>
+        <div class="orders-container" style="border-bottom: 1px solid dashed" *ngFor="let order of dataSource; let i = index">
             <div class="order-title">
-                ORDER NUMBER {{i + 1}}
+                <strong>ORDER NUMBER {{i + 1}}</strong>
             </div>
-            <div class="order-details">
+            <div class="order-details" style="font-size: 11px;">
             Customer:  {{order.userProfile.fullname}} (order code : {{order.orderCode}})
             <br />
             Finalised On: {{order.finalisedDateDisplay}}
             <br />
             Delivery Date: {{order.deliveryDateDisplay}}
             </div>
+            <br />
             <table mat-table #table [dataSource]="order.orderCompanyProducts">     
 
                 <ng-container matColumnDef="quantity">
-                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <th mat-header-cell *matHeaderCellDef style="width:100px">Quantity Ordered</th>
                     <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
                 </ng-container>       
             
                 <ng-container matColumnDef="price">
-                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <th mat-header-cell *matHeaderCellDef> Price per Unit </th>
                     <td mat-cell *matCellDef="let element"> {{element.price}} </td>
                 </ng-container>
         
                 <!-- Weight Column -->
         
                 <ng-container matColumnDef="total">
-                    <th mat-header-cell *matHeaderCellDef> Total </th>
+                    <th mat-header-cell *matHeaderCellDef> Total Price </th>
                     <td mat-cell *matCellDef="let element"> {{element.total}} </td>
                 </ng-container>
         
@@ -51,6 +52,9 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table >
+            <br /> <br />
+            - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            <br />
         </div>
     </div>
     
