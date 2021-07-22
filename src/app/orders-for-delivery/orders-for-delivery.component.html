@@ -12,7 +12,7 @@
         There was an error retrieving your orders, please contact support if this persists
         <br /><br />
     </div>
-    <div id="ordersList" #ordersList>
+    <div id="ordersList" #ordersList style="background-color: #fff; color: #000; padding: 20px;">
         <div class="orders-container" style="border-bottom: 1px solid dashed" *ngFor="let order of dataSource; let i = index">
             <div class="order-title">
                 <strong>ORDER NUMBER {{i + 1}}</strong>
@@ -56,6 +56,11 @@
             - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             <br />
         </div>
+
+       <strong> Orders Total: {{totalForTrim/100 | currency:'EUR' }}<br />
+        Collecting Agent: Steven Makombora (142-WW-1192)<br />
+        Collection Time: 11.00AM  on {{dataSource[0].deliveryDateDisplay}}
+        </strong>
     </div>
     
   </div>

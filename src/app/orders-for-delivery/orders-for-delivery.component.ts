@@ -18,6 +18,7 @@ export class OrdersForDeliveryComponent implements OnInit {
   private loaded = false;
   displayedColumns: string[] = ['quantity', 'price', 'total', 'productName'];
   dataSource;
+  totalForTrim: number;
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
@@ -25,6 +26,10 @@ export class OrdersForDeliveryComponent implements OnInit {
     .subscribe(res => {
       if(res.success){
         this.dataSource = res.returnValue;
+        this.totalForTrim = this.dataSource.map(a => a.totalProductPrice).reduce(function(a, b)
+        {
+          return a + b;
+        });    
         this.loaded = true;
       }
       else{
