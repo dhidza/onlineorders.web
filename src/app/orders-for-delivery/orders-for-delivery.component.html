@@ -34,14 +34,14 @@
             
                 <ng-container matColumnDef="price">
                     <th mat-header-cell *matHeaderCellDef> Price per Unit </th>
-                    <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.price / 100 | currency: 'EUR'}} </td>
                 </ng-container>
         
                 <!-- Weight Column -->
         
                 <ng-container matColumnDef="total">
                     <th mat-header-cell *matHeaderCellDef> Total Price </th>
-                    <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.total / 100 | currency: 'EUR'}} </td>
                 </ng-container>
         
                 <!-- Symbol Column -->
