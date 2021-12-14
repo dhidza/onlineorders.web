@@ -24,8 +24,8 @@ export class CategoriesComponent implements OnInit {
         });
   }
 
-  selectCategory(id: number){
-    this.router.navigateByUrl('/products/' + id);
+  selectCategory(companyId:number, id: number){
+    this.router.navigateByUrl('/products/' + companyId + '/' + id);
   }
 
 }

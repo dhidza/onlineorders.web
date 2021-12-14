@@ -5,4 +5,5 @@ export interface ICompanyProductModel {
     batchNumber: string;
     price: number;
     product: IProductModel;
+    companyId: number;
 }

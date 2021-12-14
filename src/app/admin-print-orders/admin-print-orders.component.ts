@@ -18,7 +18,7 @@ dataSource;
 constructor(private orderService: OrderService) { }
 
 ngOnInit(): void {
-  this.orderService.ordersForDelivery()
+  this.orderService.adminOrders()
   .subscribe(res => {
     if(res.success){
       this.dataSource = res.returnValue;

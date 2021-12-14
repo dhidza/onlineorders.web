@@ -10,6 +10,7 @@ import { RedirectModel } from '../models/redirect-model';
 import { AuthService } from '../services/auth.service';
 import { OrderService } from '../services/order.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-delivery',
@@ -26,9 +27,11 @@ export class DeliveryComponent implements OnInit {
   nextDelivery: string = '';
   
   constructor( private router: Router, private orderService: OrderService, private activatedRoute: ActivatedRoute, 
+    private spinner: NgxSpinnerService,
     private cartService: ShoppingCartService, private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.activatedRoute.paramMap.subscribe(params => {  
       this.cartService.getShoppingCart(+params.get('id'), params.get('code'))
       .subscribe(res => {
@@ -47,9 +50,11 @@ export class DeliveryComponent implements OnInit {
         }        
         this.updateTotals(res.returnValue);
         this.loaded = true;
+        this.spinner.hide();
       },
       (error) => {
         console.log(error);
+        this.spinner.hide();
       });  
     }); 
   }

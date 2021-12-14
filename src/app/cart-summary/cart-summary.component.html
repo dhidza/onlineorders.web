@@ -10,8 +10,8 @@
 <div *ngIf="model && !model.success" class="cart-error">
     Error
 </div>
-
-<div class="cart-summary" *ngIf="model.success">
+<div *ngIf="!isLoading">
+    <div class="cart-summary" *ngIf="model.success">
     <div  class="card-container"  *ngFor="let orderProduct of model.returnValue.orderCompanyProducts">
         <div class="card u-clearfix">         
           <div class="card-media-full">
@@ -41,25 +41,25 @@
           <div class="u-clearfix"></div>    
         </div> 
       </div>
-</div>
+    </div>
 
-<div class="card-nav card-container no-border">   
-    <h3>Your Order Totals</h3>
-    <div class="media">
-        <img src="assets/images/basket.png" width="80px" class="basket" alt=""/>
+    <div class="card-nav card-container no-border">   
+        <h3>Your Order Totals</h3>
+        <div class="media">
+            <img src="assets/images/basket.jpg" width="80px" class="basket" alt=""/>
+        </div>
+        <div class="totals"><span class="card-author block subtle"> Subtotal ({{orderTotals.totalQuantity}} items):  {{orderTotals.productTotal}}  </span>
+            <!-- <span class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails"> Service Fee:  {{orderTotals?.serviceFee}}  </span>
+            <span class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails"> Delivery Fee:  {{orderTotals.deliveryFee}}  </span>
+            <span class="card-author block" style="color:#50c27c"> Order Total:  {{orderTotals.orderTotal}}  </span> -->
+        </div> 
+        <div class="u-clearfix"></div>
     </div>
-    <div class="totals"><span class="card-author block subtle"> Subtotal ({{orderTotals.totalQuantity}} items):  {{orderTotals.productTotal}}  </span>
-        <!-- <span class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails"> Service Fee:  {{orderTotals?.serviceFee}}  </span>
-        <span class="card-author block subtle"  *ngIf="deliveryDetails.isValidDeliveryDetails"> Delivery Fee:  {{orderTotals.deliveryFee}}  </span>
-        <span class="card-author block" style="color:#50c27c"> Order Total:  {{orderTotals.orderTotal}}  </span> -->
-    </div> 
     <div class="u-clearfix"></div>
-</div>
-<div class="u-clearfix"></div>
-<div class="card-nav card-container no-border" *ngIf="model.returnValue.orderCompanyProducts.length > 0" >
-    <div style="padding:16px">
-        <button mat-raised-button color="accent" class="fullwidth" (click)="delivery()">Finalise your order</button>
+    <div class="card-nav card-container no-border" *ngIf="model.returnValue.orderCompanyProducts.length > 0" >
+        <div style="padding:16px">
+            <button mat-raised-button color="accent" class="fullwidth" (click)="delivery()">Finalise your order</button>
+        </div>   
     </div>
-   
 </div>
 </div>

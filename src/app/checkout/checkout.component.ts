@@ -55,11 +55,11 @@ export class CheckoutComponent implements OnInit {
         private stripeFactory: StripeFactoryService ) { }
 
   ngOnInit(): void { 
+    this.spinner.show();
     this.stripe = this.stripeFactory.create(this.config.stripeKey);
     this.stripeForm = this.fb.group({
       name: ['', [Validators.required]]
     });
-
     this.activatedRoute.paramMap.subscribe(params => {  
       this.orderCode = params.get('code');
       this.cartService.getShoppingCart(+params.get('id'), params.get('code'))
@@ -67,9 +67,11 @@ export class CheckoutComponent implements OnInit {
         console.log(res);       
         this.updateTotals(res.returnValue);
         this.loading = false;
+        this.spinner.hide();
       },
       (error) => {
         console.log(error);
+        this.spinner.hide();
       });  
     }); 
   }

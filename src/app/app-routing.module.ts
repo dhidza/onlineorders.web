@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'requestreset', component: ForgotPasswordComponent },
   { path: 'reset/:token/:email', component: ResetPasswordComponent },
   { path: 'legal', component: LegalComponent },
-  { path: 'products/:id', component: ProductsComponent},
+  { path: 'products/:companyId/:id', component: ProductsComponent},
   { path: 'cart/:id', component: AddToCartComponent},
   { path: 'summary/:id/:code', component: CartSummaryComponent, canActivate:[AuthGuardService]},
   { path: 'orders', component: OrderHistoryComponent, canActivate:[AuthGuardService]},

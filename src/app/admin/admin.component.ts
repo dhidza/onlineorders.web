@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin',
@@ -8,13 +9,14 @@ import { OrderService } from '../services/order.service';
 })
 export class AdminComponent implements OnInit {
   public showError = false;
-  private loaded = false; 
+  loaded = false; 
   totalForTrim: number;
   totalPaid: number;
   dataSource;
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private spinner: NgxSpinnerService) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {  
+    this.spinner.show(); 
     this.orderService.ordersForDelivery()
     .subscribe(res => {
       if(res.success){
@@ -32,10 +34,12 @@ export class AdminComponent implements OnInit {
       else{
         this.showError = true;
       }
+      this.spinner.hide();
     },
     (error) => {
       console.log(error);
       this.showError = true;
+      this.spinner.hide();
     });
   }
 }

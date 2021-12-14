@@ -16,7 +16,7 @@ export class ListingService {
   constructor(private _http: HttpClient, private config: AppConfig) { }
 
   getCategories() :  Observable<CrudResponse<ICategoryModel[]>>{   
-    return this._http.get<CrudResponse<ICategoryModel[]>>(this.config.dataEndpoint + "/listings/categories/" + this.config.companyId, 
+    return this._http.get<CrudResponse<ICategoryModel[]>>(this.config.dataEndpoint + "/listings/categories", 
               {headers: this.setHeaders()});
   }
 
@@ -25,15 +25,14 @@ export class ListingService {
               {headers: this.setHeaders()});
   }
 
-  getProducts(productId : number):  Observable<CrudResponse<ICompanyProductModel[]>>{  
+  getProducts(companyId: number, productId : number):  Observable<CrudResponse<ICompanyProductModel[]>>{  
     return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/products/" + 
-              this.config.companyId + "/" + productId, 
+              companyId + "/" + productId, 
        {headers: this.setHeaders()});
   }
 
   getTopSellers():  Observable<CrudResponse<ICompanyProductModel[]>>{  
-    return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/topsellers/" + 
-              this.config.companyId, 
+    return this._http.get<CrudResponse<ICompanyProductModel[]>>(this.config.dataEndpoint + "/listings/topsellers", 
        {headers: this.setHeaders()});
   }
 

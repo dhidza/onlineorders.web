@@ -10,7 +10,8 @@
 </div>
 <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs style="float: left;">
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-        <li style="padding-top:5px;"><a style="padding:0px" (click)="showCart()"><img width="36" class="basket-icon" src="assets/images/icons/shopping-basket.png">
-            <span class="basket-counter">{{basketCount}}</span></a></li>
+        <li *ngIf="!isLoading" style="padding-top:5px;"><a style="padding:0px" (click)="showCart()"><img width="36" class="basket-icon" 
+            src="assets/images/icons/shopping-basket.png">
+            <div class="basket-counter">{{basketCount}}</div></a></li>
     </ul>
 </div>

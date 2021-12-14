@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
         console.log(params.get('id'))
-        this.listingService.getProducts(+params.get('id'))
+        this.listingService.getProducts(+params.get('companyId'), +params.get('id'))
         .subscribe(res => {
           console.log(res);
           if(res.success)

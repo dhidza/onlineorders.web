@@ -68,7 +68,7 @@ export class AddToCartComponent implements OnInit {
   }
 
   backToList(){
-    this.router.navigateByUrl('/products/' + this.model.companyProduct.product.categoryId);
+    this.router.navigateByUrl('/products/' + this.model.companyProduct.companyId + '/' + this.model.companyProduct.product.categoryId);
   }
 
   openDialog(order: IOrder, success: boolean) : void {
@@ -79,7 +79,7 @@ export class AddToCartComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(checkoutClick => {
       if(!checkoutClick || checkoutClick != -1000)
-        this.router.navigateByUrl('/products/' + this.model.companyProduct.product.categoryId);      
+        this.router.navigateByUrl('/products/' + this.model.companyProduct.companyId + '/' + this.model.companyProduct.product.categoryId);      
     });
   }
 }
