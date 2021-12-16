@@ -21,14 +21,21 @@ export class AdminComponent implements OnInit {
     .subscribe(res => {
       if(res.success){
         this.dataSource = res.returnValue;
-        this.totalForTrim = this.dataSource.map(a => a.totalProductPrice).reduce(function(a, b)
-        {
-          return a + b;
-        });    
-        this.totalPaid = this.dataSource.map(a => a.totalOrderCents).reduce(function(a, b)
-        {
-          return a + b;
-        });      
+        if(this.dataSource.length > 0){
+          this.totalForTrim = this.dataSource.map(a => a.totalProductPrice).reduce(function(a, b)
+          {
+            return a + b;
+          });    
+          this.totalPaid = this.dataSource.map(a => a.totalOrderCents).reduce(function(a, b)
+          {
+            return a + b;
+          });
+        }
+        else{
+          this.totalForTrim = 0;
+          this.totalPaid = 0;
+        }
+              
         this.loaded = true;
       }
       else{
